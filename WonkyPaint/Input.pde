@@ -56,24 +56,7 @@ void keyPressed() {
     background(color(random(0, 255), random(0, 255), random(0, 255)));
   } else if (key == ENTER) {
     print("enter\n");
-    if (!animating) {
-      
-      if(shapes.size() <= 0){
-       return; 
-      }
-
-      toAnimate = new ArrayList<ShapeDetail>(shapes);
-
-      framesToProcess = 0 + shapes.size();
-      framesProcessed = 0;
-
-      shapes.clear();
-      clear();
-
-      animating = true;
-      animate = true;
-      print("Starting animation - " + framesToProcess + " frames to process\n");
-    }
+    InvokeAnimation();
   }
 }
 

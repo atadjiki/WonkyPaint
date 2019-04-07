@@ -1,4 +1,9 @@
 void AddShape() {
+  
+  if(verifyBounds(mouseX, mouseY) == false){
+    
+    return;
+  }
 
   ShapeDetail newShape = new ShapeDetail();
 

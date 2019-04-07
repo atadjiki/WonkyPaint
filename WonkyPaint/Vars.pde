@@ -28,3 +28,5 @@ boolean s_pressed;
 boolean g_pressed;
 boolean shift_pressed;
 boolean del_pressed;
+
+int menuBarSize = 100;

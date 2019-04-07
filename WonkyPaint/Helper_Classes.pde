@@ -1,7 +1,3 @@
-/*
-* Helper Classes
- */
-
 enum ShapeType { 
   Circle, Rectangle, Triangle, Quad, Arc
 };

@@ -55,6 +55,7 @@ void DeleteAll() {
 
   shapes.clear();
   clear();
+  setupMenu();
 }
 
 void SetAllStroke() {
@@ -70,5 +71,26 @@ void SetAllGrayscale() {
   ToggleGrayscale();
   for (int i = 0; i < shapes.size(); i++) {
     shapes.get(i).grayscale =  grayscale;
+  }
+}
+
+void InvokeAnimation() {
+  if (!animating) {
+
+    if (shapes.size() <= 0) {
+      return;
+    }
+
+    toAnimate = new ArrayList<ShapeDetail>(shapes);
+
+    framesToProcess = 0 + shapes.size();
+    framesProcessed = 0;
+
+    shapes.clear();
+    clear();
+
+    animating = true;
+    animate = true;
+    print("Starting animation - " + framesToProcess + " frames to process\n");
   }
 }
