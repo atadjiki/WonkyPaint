@@ -1,5 +1,7 @@
 import controlP5.*;
-ControlP5 controlP5; // controlP5 object
+
+ControlP5 controlP5;
+
 
 void setup() {
 
@@ -8,8 +10,7 @@ void setup() {
   loop();
   fill(fillColor);
   
-  controlP5 = new ControlP5(this);
-  controlP5.addBang("bang1",10,10,20,20);
+  ControlSetup();
 }
 
 /*

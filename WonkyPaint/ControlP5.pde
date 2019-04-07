@@ -1,3 +1,12 @@
+void ControlSetup(){
+  
+   controlP5 = new ControlP5(this);
+   controlP5.addBang("Background Color",10,10,20,20); 
+  
+}
+
+
+
 void controlEvent(ControlEvent theEvent) {
  /* events triggered by controllers are automatically forwarded to 
  the controlEvent method. by checking the name of a controller one can 
@@ -14,7 +23,7 @@ void controlEvent(ControlEvent theEvent) {
  print("control event from : "+theEvent.getController().getName());
  println(", value : "+theEvent.getController().getValue());
  
- if(theEvent.getController().getName()=="bang1") {
+ if(theEvent.getController().getName()=="Background Color") {
     background(color(random(0, 255), random(0, 255), random(0, 255)));
  }
  

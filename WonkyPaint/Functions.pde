@@ -11,10 +11,6 @@ void RandomizeFill() {
   }
 }
 
-/*
-* Bools
- */
-
 void ToggleShape() {
 
   if (shapeType == ShapeType.Circle) {
@@ -34,12 +30,6 @@ void ToggleShape() {
     print("Current shape: circle\n");
   }
 }
-
-
-
-/*
-* Input Stuff
- */
 
 void DoDelete() {
   if (shapes.size() > 0) {
