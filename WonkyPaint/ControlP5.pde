@@ -6,6 +6,9 @@ String deleteName = "Delete";
 String strokeName = "Stroke";
 String sizeName = "Size";
 
+
+String consoleText = "Wonky Paint";
+
 void ControlSetup() {
 
   controlP5 = new ControlP5(this);
@@ -15,17 +18,23 @@ void ControlSetup() {
   controlP5.addBang(deleteName, 180, 10, 20, 20).setColorActive(activeColor);
   controlP5.addToggle(strokeName, currentStroke, 230, 10, 20, 20).setColorActive(activeColor);
   controlP5.addBang("Clear", 280, 10, 20, 20).setColorActive(activeColor);
-  
+
   controlP5.addToggle("SHIFT", shiftDown, 400, 20, 60, 60).setColorActive(activeColor);
 
 
-  controlP5.addBang("Animate", 480, 20, 20, 50).setColorActive(activeColor);
+  controlP5.addToggle("Animate", false, 480, 20, 20, 50).setColorActive(activeColor);
   // parameters : name, minimum, maximum, default value (float, x, y, diameter
-  controlP5.addKnob("Frame Rate", 1, 60, 30, 525, 20, 50).setColorActive(activeColor);
+  controlP5.addKnob("Frame Rate", 0, 59, 30, 525, 20, 50).setColorActive(activeColor);
 
   // parameters : name, minimum, maximum, default value (float), x, y, width, height
   controlP5.addSlider(sizeName, minSize, maxSize, 50, 20, 75, 100, 10).setColorActive(activeColor);
   controlP5.addSlider("Drag Resolution", 0, 20, 0, 170, 75, 100, 10).setColorActive(activeColor);
+
+  controlP5.addTextlabel("Console")  
+    .setPosition(10, 660)             
+    .setSize(600, 40)
+    .setText(consoleText)            
+    ;
 }
 
 void controlEvent(ControlEvent e) {
@@ -38,7 +47,19 @@ void controlEvent(ControlEvent e) {
     if (e.getController().getName()=="Background Color") {
       background(color(random(0, 255), random(0, 255), random(0, 255)));
     } else if (e.getController().getName()=="Animate") {
-      InvokeAnimation();
+      if (e.getController().getValue() == 1.0) {
+        if (InvokeAnimation()) {
+          e.getController().setLabel("Cancel");
+        } else {
+          e.getController().setValue(0.0);
+        }
+      } else {
+
+        if (animating) {
+          CancelAnimation();
+          e.getController().setLabel("Animate");
+        }
+      }
     } else if (e.getController().getName()==grayscaleName) {
       if (shiftDown) {
         SetAllGrayscale();
@@ -46,13 +67,12 @@ void controlEvent(ControlEvent e) {
         ToggleGrayscale();
       }
     } else if (e.getController().getName()==sizeName) {
-      if(shiftDown){
+      if (shiftDown) {
         currentSize = (int) e.getController().getValue();
         SetAllSize();
-      }else{
+      } else {
         currentSize = (int) e.getController().getValue();
       }
-      
     } else if (e.getController().getName()=="Drag Resolution") {
       dragResolution = (int) e.getController().getValue();
     } else if (e.getController().getName()==strokeName) {
@@ -69,7 +89,7 @@ void controlEvent(ControlEvent e) {
       }
     } else if (e.getController().getName()=="Frame Rate") {
       framesPerSecond = (int) e.getController().getValue();
-      maxFrames = (30/framesPerSecond);
+      maxFrames = 60 - framesPerSecond;
     } else if (e.getController().getName()=="SHIFT") {
       shiftDown = !shiftDown;
       UpdateControlNames();
@@ -83,6 +103,8 @@ void controlEvent(ControlEvent e) {
 boolean verifyBounds(int x, int y) {
 
   if (y < menuBarSize*1.25) {
+    return false;
+  } else if ( y > 650) {
     return false;
   }
 

@@ -6,7 +6,7 @@ void setup() {
 
   
   clear();
-  size(600, 600); 
+  size(600, 700); 
   loop();
   
   setupMenu();
@@ -27,6 +27,8 @@ void draw() {
   }
   
   setupMenu();
+  
+  controlP5.get(Textlabel.class,"Console").setText(consoleText);
 }
 
 void setupMenu(){
@@ -34,4 +36,5 @@ void setupMenu(){
   fill(color(0,0,0));
   stroke(color(255, 255, 255));
   rect(0,0, 600, menuBarSize);
+  rect(0,650,600,50);
 }

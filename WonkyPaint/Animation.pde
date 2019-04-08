@@ -17,9 +17,26 @@ void DoAnimate() {
       lockControls = false;
       toAnimate.clear();
       animName = (int) random(0,1024);
+      controlP5.get(Toggle.class, "Animate").setLabel("Animate");
+      controlP5.get(Toggle.class, "Animate").setValue(0.0);
       print("\nAnimation complete!\n");
+      consoleText = "\nAnimation complete!\n";
     }
   } else {
     currentFrame++;
   }
+}
+
+void CancelAnimation(){
+  
+      animating = false; 
+      animate = false;
+      lockControls = false;
+      shapes.clear();
+      shapes.addAll(toAnimate);
+      toAnimate.clear();
+      animName = (int) random(0,1024);
+      print("\nAnimation cancelled!\n");
+      consoleText = "\nAnimation cancelled!\n";
+  
 }
