@@ -14,6 +14,7 @@ void ControlSetup() {
   controlP5.addToggle(grayscaleName, grayscale, 110, 10, 20, 20).setColorActive(activeColor);
   controlP5.addBang(deleteName, 180, 10, 20, 20).setColorActive(activeColor);
   controlP5.addToggle(strokeName, currentStroke, 230, 10, 20, 20).setColorActive(activeColor);
+  controlP5.addBang("Clear", 280, 10, 20, 20).setColorActive(activeColor);
   
   controlP5.addToggle("SHIFT", shiftDown, 400, 20, 60, 60).setColorActive(activeColor);
 
@@ -24,7 +25,7 @@ void ControlSetup() {
 
   // parameters : name, minimum, maximum, default value (float), x, y, width, height
   controlP5.addSlider(sizeName, minSize, maxSize, 50, 20, 75, 100, 10).setColorActive(activeColor);
-  controlP5.addSlider("Drag Resolution", 0, 100, 0, 170, 75, 100, 10).setColorActive(activeColor);
+  controlP5.addSlider("Drag Resolution", 0, 20, 0, 170, 75, 100, 10).setColorActive(activeColor);
 }
 
 void controlEvent(ControlEvent e) {
@@ -72,6 +73,9 @@ void controlEvent(ControlEvent e) {
     } else if (e.getController().getName()=="SHIFT") {
       shiftDown = !shiftDown;
       UpdateControlNames();
+    } else if (e.getController().getName()=="Clear") {
+      clear();
+      draw();
     }
   }
 }
