@@ -92,5 +92,6 @@ void InvokeAnimation() {
     animating = true;
     animate = true;
     print("Starting animation - " + framesToProcess + " frames to process\n");
+    print("Animating at " + maxFrames + " frames per second");
   }
 }

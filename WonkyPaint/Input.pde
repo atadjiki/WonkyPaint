@@ -84,7 +84,13 @@ void mouseDragged()
   if (lockControls) return;
   if (mouseButton == LEFT) {
 
-    AddShape();
+    if(drag_count >= dragResolution){
+      AddShape();
+      drag_count = 0;
+    }else{
+     drag_count++; 
+    }
+    
   }
 }
 

@@ -5,11 +5,13 @@ boolean lockControls = false;
 boolean animate = false;
 boolean animating = false;
 
-int maxSize = 500;
+int maxSize = 100;
 int minSize = 5;
 int currentSize = 50;
 int timeStampFill = 0;
 int maxStampFill = 60;
+int dragResolution = 0;
+int drag_count = 0;
 
 color fillColor = color(random(0, 255), random(0, 255), random(0, 255));
 
@@ -19,7 +21,7 @@ int framesPerSecond = 120;
 int framesToProcess;
 int framesProcessed;
 int currentFrame = 0;
-int maxFrames = 60/framesPerSecond;
+int maxFrames = 30/framesPerSecond;
 int animName = (int) random(1024);
 
 ArrayList<ShapeDetail> toAnimate;
